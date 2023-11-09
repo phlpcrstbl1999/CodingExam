@@ -15,5 +15,7 @@
         </form>
         </div>
     </div>
+    <script src="assets/sweetalert/jquery-3.6.0.min.js"></script>
+    <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
 </body>
 </html>
