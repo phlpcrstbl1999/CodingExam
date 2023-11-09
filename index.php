@@ -1,5 +1,7 @@
 <?php
+    session_start();
     require_once('db/db.php');
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,44 +14,45 @@
 <body>
     <div class="wrapper">
     <div class="questions-container">
-    <form method="POST" action="backend/action.php">
-
         <?php
             $sql = "Select * from tblquestions";
             $result = mysqli_query($con, $sql);
             while($row = mysqli_fetch_assoc($result)){
+                $q_id = $row['q_id'];
                 $question = $row['questions'];
                 $opt1 = $row['opt1'];
                 $opt2 = $row['opt2'];
-                $opt3 = $row['opt2']; 
+                $opt3 = $row['opt3']; 
         ?>
         <div class="question">
             <?php echo $question;?>
         </div>
         <div class="choices">
             <div class="form">
-                <input type="radio" name="choice" id="opt1" value="<?php echo $opt1;?>">
-                <label class="choice-desc" for="opt1">A. <?php echo $opt1; ?></label>
+                <input type="radio" name="choice" id="optA" value="A">
+                <label class="choice-desc" for="optA">A. <?php echo $opt1; ?></label>
             </div>
            <div class="form">
-                <input type="radio" name="choice" id="opt2" value="<?php echo $opt2;?>">
-                <label class="choice-desc" for="opt2">B. <?php echo $opt2; ?></label>
+                <input type="radio" name="choice" id="optB" value="B">
+                <label class="choice-desc" for="optB">B. <?php echo $opt2; ?></label>
            </div>
            <div class="form">
-                <input type="radio" name="choice" id="opt3" value="<?php echo $opt3;?>">
-                <label class="choice-desc" for="opt3">C. <?php echo $opt3; ?></label>
+                <input type="radio" name="choice" id="optC" value="C">
+                <label class="choice-desc" for="optC">C. <?php echo $opt3; ?></label>
            </div>
         </div>
         <div class="btn">
-        <input type="submit" class="next-btn" name="next" value="next">
+        <input type="hidden" name="q_id" id="q_id" value="<?php echo $q_id; ?>">
+        <button type="button" class="next-btn" name="next" id="next" value="">next</button>
 
         </div>
-    </form>
         <?php
             }
         ?>
     </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="JS/main.js"></script>
 
 </body>
 </html>
