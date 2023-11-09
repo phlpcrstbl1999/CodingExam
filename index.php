@@ -1,7 +1,11 @@
 <?php
     session_start();
     require_once('db/db.php');
-    
+    if(!isset($_SESSION['name'])) {
+        header('location:login.php');
+    }else {
+        $name = $_SESSION['name'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +17,9 @@
 </head>
 <body>
     <div class="wrapper">
+    <h3>HELLO <?php echo strtoupper($name); ?>!</h3>
     <div class="questions-container">
+    
         <?php
             $sql = "Select * from tblquestions";
             $result = mysqli_query($con, $sql);
@@ -43,7 +49,7 @@
         </div>
         <div class="btn">
         <input type="hidden" name="q_id" id="q_id" value="<?php echo $q_id; ?>">
-        <button type="button" class="next-btn" name="next" id="next" value="">next</button>
+        <button type="button" class="next-btn" name="next" id="next">Next</button>
 
         </div>
         <?php

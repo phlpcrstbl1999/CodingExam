@@ -39,4 +39,20 @@ display: block;
     margin-bottom: 3rem;
 
 }
+.container {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.submit-btn {
+    background-color: blue;
+    color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 10px;
+}
+.name-input {
+    border: 1px solid black;
+    padding: 10px;
 
+}
