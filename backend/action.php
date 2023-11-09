@@ -5,10 +5,18 @@ require_once('../db/db.php');
 if(isset($_POST['q_id'])) {
     $q_id = $_POST['q_id'];
     $u_id = $_POST['u_id'];
+    $count = $_POST['count'];
     $ans = $_POST['answer'];
     $sql = "Insert into tbluseranswers(q_id,u_id,u_ans)values('$q_id','$u_id','$ans')";
     $result = mysqli_query($con, $sql);
     if($result) {
+        if($count == 7) {
+            $_SESSION['status'] = "Completed";
+            $_SESSION['status_code'] = "success";  
+            $_SESSION['status_text'] = "Please see the result";
+            $_SESSION['completed'] = 'completed';
+            header('location:../index.php');
+        }
         header('location:../index.php');
     }
 }
@@ -37,5 +45,11 @@ if(isset($_POST['access'])) {
             header('location:../index.php');
         }
     }
+}
+
+if(isset($_POST['tryAgain'])) {
+    unset($_SESSION['name']);
+    header('location:../index.php');
+
 }
 ?>
