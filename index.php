@@ -5,6 +5,8 @@
         header('location:login.php');
     }else {
         $name = $_SESSION['name'];
+        $u_id = $_SESSION['u_id'];
+      
     }
 ?>
 <!DOCTYPE html>
@@ -21,7 +23,7 @@
     <div class="questions-container">
     
         <?php
-            $sql = "Select * from tblquestions";
+            $sql = "Select * from tblquestions where q_id NOT IN (Select q_id from tbluseranswers where u_id = $u_id)";
             $result = mysqli_query($con, $sql);
             while($row = mysqli_fetch_assoc($result)){
                 $q_id = $row['q_id'];
@@ -49,6 +51,7 @@
         </div>
         <div class="btn">
         <input type="hidden" name="q_id" id="q_id" value="<?php echo $q_id; ?>">
+        <input type="hidden" name="u_id" id="u_id" value="<?php echo $u_id; ?>">
         <button type="button" class="next-btn" name="next" id="next">Next</button>
 
         </div>

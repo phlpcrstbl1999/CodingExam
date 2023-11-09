@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("body").on("click", "#next", function (event) {
         event.preventDefault();
         var q_id = $("#q_id").val();
+        var u_id = $("#u_id").val();
         var answer;
         choice1 = document.getElementById('optA');
         choice2 = document.getElementById('optB');
@@ -27,6 +28,7 @@ $(document).ready(function(){
               data: {
                 next: 1,
                 q_id: q_id,
+                u_id: u_id,
                 answer: answer
               },
               success: function (response) {
