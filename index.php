@@ -7,9 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam</title>
+    <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
+    <div class="wrapper">
     <div class="questions-container">
+    <form method="POST" action="backend/action.php">
+
         <?php
             $sql = "Select * from tblquestions";
             $result = mysqli_query($con, $sql);
@@ -36,9 +40,16 @@
                 <label class="choice-desc" for="opt3">C. <?php echo $opt3; ?></label>
            </div>
         </div>
+        <div class="btn">
+        <input type="submit" class="next-btn" name="next" value="next">
+
+        </div>
+    </form>
         <?php
             }
         ?>
     </div>
+    </div>
+
 </body>
 </html>
